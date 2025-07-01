@@ -10,8 +10,7 @@ pipeline {
 
         stage('Install Dependencies') {
             steps {
-                sh 'curl -sS https://getcomposer.org/installer | php'
-                sh 'php composer.phar install'
+                sh 'docker run --rm -v $PWD:/app -w /app php:8.2-cli sh -c "curl -sS https://getcomposer.org/installer | php && php composer.phar install"'
             }
         }
 
